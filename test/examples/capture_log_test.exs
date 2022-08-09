@@ -16,11 +16,11 @@ defmodule TestingExamples.CaptureLogTest do
         assert capture_log(fn -> Logger.error(msg) end) =~ msg
       end
 
-      Logger.debug("testing")
+      Logger.warn("testing")
     end
 
     assert capture_log(fun) =~ "hello"
-    assert capture_log([level: :debug], fun) =~ "testing"
+    assert capture_log([level: :warn], fun) =~ "testing"
   end
 
   test "assert_raise squashes exceptions" do

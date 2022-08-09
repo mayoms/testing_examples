@@ -6,7 +6,8 @@ defmodule TestingExamples.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      {TestingExamples.Repo, []},
+      TestingExamples.Repo,
+      TestingExamples.Permissions.Server,
       {Plug.Cowboy, scheme: :http, plug: TestingExamples.Router, options: [port: 8080]}
     ]
 
