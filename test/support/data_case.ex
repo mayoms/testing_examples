@@ -10,8 +10,7 @@ defmodule DataCase do
       import DataCase
       import Factory
 
-      alias TestingExamples.Users.User
-      alias TestingExamples.Repo
+      alias TestingExamples.{Users, Users.User, Repo}
     end
   end
 

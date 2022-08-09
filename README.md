@@ -2,18 +2,17 @@
 
 **TODO: Add description**
 
-## Installation
+## Resources
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `testing_examples` to your list of dependencies in `mix.exs`:
+* [ExUnit.CaseTemplate](https://hexdocs.pm/ex_unit/1.13/ExUnit.CaseTemplate.html)
+* [ExUnit.CaptureLog](https://hexdocs.pm/ex_unit/1.13/ExUnit.CaptureLog.html)
+* [ExUnit.Tags](https://hexdocs.pm/ex_unit/main/ExUnit.Case.html#module-tags)
+* [Ecto.Adapters.SQL.Sandbox](https://hexdocs.pm/ecto_sql/Ecto.Adapters.SQL.Sandbox.html)
+* [ExMachina](https://hexdocs.pm/ex_machina/readme.html)
+* [Assertions](https://hexdocs.pm/assertions/readme.html#content)
+* [Mox](https://hexdocs.pm/mox/Mox.html)
+* [:erlang.trace/3](https://www.erlang.org/doc/man/erlang.html#trace-3)
 
-```elixir
-def deps do
-  [
-    {:testing_examples, "~> 0.1.0"}
-  ]
-end
-```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
