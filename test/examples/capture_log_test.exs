@@ -4,7 +4,7 @@ defmodule TestingExamples.CaptureLogTest do
   import ExUnit.CaptureLog
   require Logger
 
-  test "example" do
+  test "capture log" do
     assert capture_log(fn ->
              Logger.error("log msg")
            end) =~ "log msg"

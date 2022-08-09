@@ -1,7 +1,7 @@
 defmodule ConnCase do
   use ExUnit.CaseTemplate
   alias TestingExamples.Router
-  import Factory
+  import BaseCase
   import Mox
 
   using do
@@ -14,17 +14,11 @@ defmodule ConnCase do
   end
 
   setup [
+    :setup_repo_sandbox,
     :handle_user_tags,
     :handle_user_permissions,
     :add_conn_to_context
   ]
-
-  # case set up functions -- has all the same rules as a setup block:
-  # https://hexdocs.pm/ex_unit/main/ExUnit.Callbacks.html#setup/1
-
-  def handle_user_tags(%{authenticated: true}), do: [user: insert(:user)]
-  def handle_user_tags(%{internal_authenticated: true}), do: [user: insert(:internal_user)]
-  def handle_user_tags(_), do: :ok
 
   def handle_user_permissions(%{user_permissions: user_permissions, user: %{id: user_id}})
       when is_list(user_permissions) do

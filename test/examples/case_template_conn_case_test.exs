@@ -45,18 +45,18 @@ defmodule TestingExamples.ConnCaseTest do
       assert %{status: 200} = get(conn, "/me")
     end
 
-    @tag user_permissions: []
-    test "user without permission stubs", %{conn: conn} do
-      user = insert(:user, first_name: "different", last_name: "user")
-
-      assert %{status: 403, resp_body: "unauthorized"} = get(conn, "/users/#{user.id}")
-    end
-
     @tag user_permissions: [:view_users]
     test "user with permission stubs", %{conn: conn} do
       user = insert(:user, first_name: "different", last_name: "user")
 
       assert %{status: 200} = get(conn, "/users/#{user.id}")
+    end
+
+    @tag user_permissions: []
+    test "user without permission stubs", %{conn: conn} do
+      user = insert(:user, first_name: "different", last_name: "user")
+
+      assert %{status: 403, resp_body: "unauthorized"} = get(conn, "/users/#{user.id}")
     end
 
     @tag internal_authenticated: false
@@ -65,6 +65,19 @@ defmodule TestingExamples.ConnCaseTest do
       user = insert(:user, first_name: "different", last_name: "user")
 
       assert %{status: 403} = get(conn, "/users/#{user.id}")
+    end
+
+    @tag user_permissions: []
+    test "mox :expect overrides stub set by tags", %{conn: conn, user: %{id: user_id}} do
+      user = insert(:user, first_name: "different", last_name: "user")
+
+      assert {:ok, []} = PermissionMock.get_user_permissions(user_id)
+
+      expect(PermissionMock, :get_user_permissions, fn ^user_id ->
+        {:ok, [:view_users]}
+      end)
+
+      assert %{status: 200} = get(conn, "/users/#{user.id}")
     end
   end
 end

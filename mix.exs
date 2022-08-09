@@ -28,6 +28,7 @@ defmodule TestingExamples.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:assertions, "~> 0.19.0", only: :test},
       {:ecto, "3.8.4"},
       {:ecto_sql, "3.8.3"},
       {:ex_machina, "~> 2.7.0", only: :test},

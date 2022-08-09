@@ -1,21 +1,22 @@
 defmodule DataCase do
   use ExUnit.CaseTemplate
+  import BaseCase
 
   using do
     quote do
       import Ecto
       import Ecto.Query
+      import Mox
       import DataCase
+      import Factory
+
+      alias TestingExamples.Users.User
+      alias TestingExamples.Repo
     end
   end
 
-  setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Shared.ReadWriteRepo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Shared.ReadWriteRepo, {:shared, self()})
-    end
-
-    :ok
-  end
+  setup [
+    :setup_repo_sandbox,
+    :handle_user_tags
+  ]
 end
