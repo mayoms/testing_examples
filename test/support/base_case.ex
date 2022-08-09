@@ -1,0 +1,2 @@
+defmodule BaseCase do
+end

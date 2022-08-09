@@ -1,5 +1,5 @@
 defmodule TestingExamples.Permissions do
-  @type p_resp :: {:ok | :error, list()}
+  @type p_resp :: {:ok, list(:atom)} | {:error, String.t()}
 
   @callback get_user_permissions(user_id :: integer()) :: p_resp()
   def get_user_permissions(_user_id) do

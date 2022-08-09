@@ -2,6 +2,8 @@ defmodule TestingExamples.Users.User do
   alias TestingExamples.Users.Account
   use Ecto.Schema
 
+  @derive {Jason.Encoder, except: [:__meta__, :account]}
+
   schema "users" do
     field :first_name, :string
     field :last_name, :string
